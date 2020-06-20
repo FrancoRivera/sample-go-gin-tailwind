@@ -3,15 +3,34 @@
 <!--Embed the header.html template at this location-->
 {{ template "header.html" .}}
 
+
+<div class="max-w-screen-lg mx-auto">
+	
+	<div class="mt-10">
+		<input type="text" class="bg-white shadow-sm border border-green-200 w-full rounded-md py-2 px-4" placeholder="Search...">
+	</div>
+
+	<div class="flex flex-wrap justify-between mt-10">
+		
     {{range .payload }}
-    <!--Create the link for the article based on its ID-->
-    <a href="/houses/{{.ID}}">
-      <!--Display the title of the article -->
-      <h2>{{.Title}}</h2>
-    </a>
-    <!--Display the content of the article-->
-    <p>{{.Content}}</p>
+    <div class="w-1/4 p-2">
+    	<div class="border bg-white rounded-md overflow-hidden shadow-sm">
+	    	<div class="h-32 bg-green-300"></div>
+	    	<div class="px-4 py-5">
+	    		<div class="font-bold">{{.Title}}</div>
+	    		<div class="mt-4 font-light">{{.Content}}</div>
+
+				<div class="mt-5">
+			    	<a href="/houses/{{.ID}}" class="px-3 py-2 border bg-green-100 text-green-800 rounded-sm">
+			    		See More
+			    	</a>
+				</div>
+	    	</div>
+    	</div>
+    </div>
   {{end}}
+</div>
+</div>
 
 <!--Embed the footer.html template at this location-->
 {{ template "footer.html" .}}
