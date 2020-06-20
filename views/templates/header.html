@@ -1,0 +1,16 @@
+<!doctype html>
+<html>
+
+  <head>
+    <!--Use the title variable to set the title of the page-->
+    <title>{{ .title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+
+    <!-- Using tailwind fo styling -->
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+  </head>
+
+  <body class="bg-green-100">
+    <!--Embed the menu.html template at this location-->
+    {{ template "menu.html" . }}
