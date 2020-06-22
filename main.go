@@ -1,11 +1,12 @@
 package main
 
-import ("./internal"
-	"./config")
+import (
+	"./config"
+	"./internal"
+)
 
 func main() {
 	internal.Initialize()
 	config.SetupRoutes()
 	internal.Router.Run(":8080")
 }
-

@@ -3,60 +3,51 @@
 package handlers
 
 import (
-  "net/http"
-  "../repository"
-  "strconv"
+	"../models"
+	"../repository"
+  "../internal"
+	"net/http"
+	"strconv"
 
-  "github.com/gin-gonic/gin"
+	"github.com/gin-gonic/gin"
 )
 
 func ShowIndexPage(c *gin.Context) {
-  houseRepository := repository.HouseRepository{}
+	houseRepository := repository.HouseRepository{}
 
-  houses := houseRepository.FetchAll()
+	title := c.Query("title")
+	houses := []models.House{}
 
-  // Call the HTML method of the Context to render a template
-  c.HTML(
-    // Set the HTTP status to 200 (OK)
-    http.StatusOK,
-    // Use the index.html template
-    "index.html",
-    // Pass the data that the page uses
-    gin.H{
-      "title":   "Home Page",
-      "payload": houses,
-    },
-  )
+	if len(title) > 0 {
+		houses = houseRepository.FindByTitle(title)
+	} else {
+		houses = houseRepository.FetchAll()
+	}
 
+  internal.Render(c, gin.H{
+    "title":   "Home Page",
+    "payload": houses}, "index.html")
 }
 
-func GetHouse(c *gin.Context){
-  houseRepository := repository.HouseRepository{}
+func GetHouse(c *gin.Context) {
+	houseRepository := repository.HouseRepository{}
 
-  houseId, err := strconv.Atoi(c.Param("house_id"));
+	houseId, err := strconv.Atoi(c.Param("house_id"))
 
-  if err != nil {
-    c.AbortWithStatus(http.StatusNotFound)
-    return
-  }
+	if err != nil {
+		c.AbortWithStatus(http.StatusNotFound)
+		return
+	}
 
-  house, err := houseRepository.FetchById(houseId)
+	house, err := houseRepository.FetchById(houseId)
 
-  if err != nil {
-      // If the article is not found, abort with an error
-      c.AbortWithError(http.StatusNotFound, err)
-    return
-  }
+	if err != nil {
+		// If the article is not found, abort with an error
+		c.AbortWithError(http.StatusNotFound, err)
+		return
+	}
 
-  c.HTML(
-    // Set the HTTP status to 200 (OK)
-    http.StatusOK,
-    // Use the article.html template
-    "house.html",
-    // Pass the data that the page uses
-    gin.H{
-        "title":   house.Title,
-        "payload": house,
-    },
-)
+  internal.Render(c, gin.H{
+    "title":   house.Title,
+    "payload": house}, "house.html")
 }

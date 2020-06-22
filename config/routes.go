@@ -3,15 +3,16 @@
 package config
 
 import (
-	"../internal"
 	"../handlers"
+	"../internal"
 
-	"github.com/gin-gonic/gin")
+	"github.com/gin-gonic/gin"
+)
 
-	func SetupRoutes(){
+func SetupRoutes() {
 
-   // GET /
-   //router.GET("/", showIndexPage)
+	// GET /
+	//router.GET("/", showIndexPage)
 	internal.Router.GET("/ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"message": "pong",
@@ -21,4 +22,3 @@ import (
 	internal.Router.GET("/", handlers.ShowIndexPage)
 	internal.Router.GET("/houses/:house_id", handlers.GetHouse)
 }
-
