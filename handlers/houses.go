@@ -26,7 +26,8 @@ func ShowIndexPage(c *gin.Context) {
 
 	internal.Render(c, gin.H{
 		"title":   "Home Page",
-		"payload": houses}, "index.html")
+		"payload": houses},
+		"index.html")
 }
 
 func GetHouse(c *gin.Context) {
@@ -39,9 +40,9 @@ func GetHouse(c *gin.Context) {
 		return
 	}
 
-	house, err := houseRepository.FetchById(houseId)
+	house := houseRepository.FetchById(houseId)
 
-	if err != nil {
+	if house == nil {
 		// If the article is not found, abort with an error
 		c.AbortWithError(http.StatusNotFound, err)
 		return
