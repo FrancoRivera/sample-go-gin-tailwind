@@ -3,9 +3,9 @@
 package handlers
 
 import (
+	"../internal"
 	"../models"
 	"../repository"
-  "../internal"
 	"net/http"
 	"strconv"
 
@@ -24,9 +24,9 @@ func ShowIndexPage(c *gin.Context) {
 		houses = houseRepository.FetchAll()
 	}
 
-  internal.Render(c, gin.H{
-    "title":   "Home Page",
-    "payload": houses}, "index.html")
+	internal.Render(c, gin.H{
+		"title":   "Home Page",
+		"payload": houses}, "index.html")
 }
 
 func GetHouse(c *gin.Context) {
@@ -47,7 +47,7 @@ func GetHouse(c *gin.Context) {
 		return
 	}
 
-  internal.Render(c, gin.H{
-    "title":   house.Title,
-    "payload": house}, "house.html")
+	internal.Render(c, gin.H{
+		"title":   house.Title,
+		"payload": house}, "house.html")
 }

@@ -3,10 +3,10 @@ package repository
 import (
 	"../models"
 	"errors"
-	"strings"
+	//"strings"
 	"fmt"
 
-  "database/sql"
+	"database/sql"
 )
 
 type HouseRepository struct {
@@ -14,34 +14,34 @@ type HouseRepository struct {
 	//model models.House
 }
 
-func buildHouse(rows *sql.Rows) []models.House{
+func buildHouse(rows *sql.Rows) []models.House {
 	houseList := []models.House{}
 
 	defer rows.Close()
-    for rows.Next(){
-      var id int
-      var firstName string
-      var lastName string
-      var lastUpdate string
-      err := rows.Scan(&id, &firstName, &lastName, &lastUpdate)
-      if err!= nil{
-        panic(err)
-      }
+	for rows.Next() {
+		var id int
+		var firstName string
+		var lastName string
+		var lastUpdate string
+		err := rows.Scan(&id, &firstName, &lastName, &lastUpdate)
+		if err != nil {
+			panic(err)
+		}
 
-      // fmt.Println(id, firstName, lastName, lastUpdate)
-      house := models.House{
-      	 		ID: id,
-      			Title: firstName,
-      			Content: lastName,
-      		}
-      houseList = append(houseList, house)
-    }
+		// fmt.Println(id, firstName, lastName, lastUpdate)
+		house := models.House{
+			ID:      id,
+			Title:   firstName,
+			Content: lastName,
+		}
+		houseList = append(houseList, house)
+	}
 
-    err := rows.Err()
-    if err != nil {
-      panic(err)
-    } 
-    return houseList
+	err := rows.Err()
+	if err != nil {
+		panic(err)
+	}
+	return houseList
 }
 
 func (r *HouseRepository) FetchAll() []models.House {
@@ -57,22 +57,19 @@ func (r *HouseRepository) FetchById(id int) (*models.House, error) {
 	rows := QueryDB(sqlStatement)
 	houseList := buildHouse(rows)
 
-	if len(houseList) > 0{
+	if len(houseList) > 0 {
 		return &houseList[0], nil
-	} else{
+	} else {
 		return nil, errors.New("House not found")
 	}
 }
 
-// not implemented
-
 func (r *HouseRepository) FindByTitle(title string) []models.House {
-	matchedList := []models.House{}
+	sqlStatement := fmt.Sprintf(`SELECT * FROM public.actor WHERE first_name ILIKE '%%%s%%'`, title)
+	fmt.Println(sqlStatement)
 
-	for _, o := range r.FetchAll(){
-		if strings.Contains(o.Title, title) {
-			matchedList = append(matchedList, o)
-		}
-	}
-	return matchedList
+	rows := QueryDB(sqlStatement)
+	houseList := buildHouse(rows)
+
+	return houseList
 }

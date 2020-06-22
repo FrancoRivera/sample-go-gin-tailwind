@@ -1,14 +1,15 @@
 package internal
 
-import ( "github.com/gin-gonic/gin"
-         "net/http"
+import (
+	"github.com/gin-gonic/gin"
+	"net/http"
 )
 
 var Router *gin.Engine
 
 func Initialize() {
 	Router = gin.Default()
-  Router.Static("/static/", "./assets/static")
+	Router.Static("/static/", "./assets/static")
 	Router.LoadHTMLGlob("./views/templates/*")
 }
 
@@ -17,16 +18,16 @@ func Initialize() {
 // the template name is present
 func Render(c *gin.Context, data gin.H, templateName string) {
 
-  switch c.Request.Header.Get("Accept") {
-  case "application/json":
-    // Respond with JSON
-    c.JSON(http.StatusOK, data["payload"])
-  case "application/xml":
-    // Respond with XML
-    c.XML(http.StatusOK, data["payload"])
-  default:
-    // Respond with HTML
-    c.HTML(http.StatusOK, templateName, data)
-  }
+	switch c.Request.Header.Get("Accept") {
+	case "application/json":
+		// Respond with JSON
+		c.JSON(http.StatusOK, data["payload"])
+	case "application/xml":
+		// Respond with XML
+		c.XML(http.StatusOK, data["payload"])
+	default:
+		// Respond with HTML
+		c.HTML(http.StatusOK, templateName, data)
+	}
 
 }

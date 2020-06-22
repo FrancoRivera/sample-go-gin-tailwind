@@ -1,11 +1,11 @@
 package handlers
 
 import (
+	"../models"
 	"net/http"
 	"net/http/httptest"
 	"os"
 	"testing"
-	"../models"
 
 	"github.com/gin-gonic/gin"
 )
