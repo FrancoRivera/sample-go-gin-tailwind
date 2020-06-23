@@ -61,18 +61,16 @@
 
 [![Sample Go Gin Tailwind Screenshot][product-screenshot]](https://example.com)
 
-Here's a blank template to get started:
-**To avoid retyping too much info. Do a search and replace with your text editor for the following:**
-`FrancoRivera`, `sample-go-gin-tailwind`, `francodalima`, `email`
-
-
 ### Built With
 
-* [Go]()
-* [Gin]()
-* [GORM]()
-* [PQ]()
-* [Tailwind CSS]()
+* [Go](https://golang.org)
+* [Tailwind CSS](https://tailwindcss.com)
+
+##### Go Packages
+
+* [Gin](https://github.com/gin-gonic/gin)
+* [GORM](https://github.com/go-gorm/gorm)
+* [pq](https://github.com/lib/pq)
 
 
 <!-- GETTING STARTED -->
@@ -83,10 +81,13 @@ To get a local copy up and running follow these simple steps.
 ### Prerequisites
 
 This is an example of how to list things you need to use the software and how to install them.
-* go
+* Go
+* PostgreSQL
+
 ```sh
 # MAC OS X (after installing homebrew)
 brew install golang
+brew install postgresql
 ```
 
 ### Installation
