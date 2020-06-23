@@ -59,7 +59,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Sample Go Gin Tailwind Screenshot][product-screenshot]](https://example.com)
 
 Here's a blank template to get started:
 **To avoid retyping too much info. Do a search and replace with your text editor for the following:**
@@ -175,4 +175,4 @@ Project Link: [https://github.com/FrancoRivera/sample-go-gin-tailwind](https://g
 [issues-url]: https://github.com/FrancoRivera/sample-go-gin-tailwind/issues
 [license-shield]: https://img.shields.io/github/license/FrancoRivera/sample-go-gin-tailwind.svg?style=flat-square
 [license-url]: https://github.com/FrancoRivera/sample-go-gin-tailwind/blob/master/LICENSE.txt
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: assets/static/screenshot.png

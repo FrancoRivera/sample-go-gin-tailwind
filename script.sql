@@ -1,6 +1,7 @@
 \c houses;
 CREATE TABLE houses (id SERIAl, title varchar(25), content varchar(128), address varchar(128));
 
+# GENERATED via https://www.mockaroo.com/
 insert into houses (id, title, content, address) values (1, 'Xiachengzi', 'turpis elementum ligula vehicula', 'bibendum morbi non quam');
 insert into houses (id, title, content, address) values (2, 'San Andrés', 'vel nulla eget', 'quam suspendisse potenti nullam');
 insert into houses (id, title, content, address) values (3, 'Ejidal', 'felis ut at', 'lacinia aenean sit');
