@@ -119,6 +119,13 @@ Run the webserver with
 PG_USER=db_username PG_PASSWORD=db_password go run main.go
 ```
 
+Compile binaries for all architectures with 
+
+```sh
+chmod +x go-executable-build.bash	# make script runnable
+./go-executable-build.bash 	  	# run script
+```
+
 
 
 <!-- ROADMAP -->
